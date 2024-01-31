@@ -8,8 +8,7 @@ package card;
  * A class that fills a magic hand of 7 cards with random Card Objects
  * and then asks the user to pick a card and searches the array of cards
  * for the match to the user's card. To be used as starting code in ICE 1
- * @modifier shreya shreya.
- * @author srinivsi
+ * @author shreya shreya. (991713126)
  */
 import java.util.*;
 public class CardTrick {
@@ -20,13 +19,16 @@ public class CardTrick {
         
         Random rand = new Random();
 
-        for (int i=0; i<magicHand.length; i++)
-        {
-            Card c = new Card();
-            c.setValue(rand.nextInt(13) + 1); // Random value between 1 and 13
-            c.setSuit(Card.SUITS[rand.nextInt(4)]); // Random suit from the array SUITS
-            magicHand[i] = c;
-        }
+        for (int i = 0; i < magicHand.length; i++) {
+             Card c = new Card();
+             c.setValue(rand.nextInt(13) + 1);
+             c.setSuit(Card.SUITS[rand.nextInt(4)]);
+             magicHand[i] = c;
+
+        // Print the card's suit and value
+        System.out.println(c.getSuit() + " " + c.getValue());
+}
+
         
         // Adding one luck card
         Card luckCard = new Card();
@@ -36,11 +38,15 @@ public class CardTrick {
 
         // Asking the user for Card value and suit
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the value of your card (1-13): ");
+        System.out.print("Enter a card value (1-13): ");
         int userValue = scanner.nextInt();
 
-        System.out.print("Enter the suit of your card (Hearts, Diamonds, Spades, Clubs): ");
-        String userSuit = scanner.next();
+        System.out.print("Enter a suit (0-3 where 0=Hearts, 1=Diamonds, 2=Clubs, 3=Spades): ");
+        int userSuitIndex = scanner.nextInt();
+
+       // Map the user's suit index to the corresponding suit
+        String userSuit = Card.SUITS[userSuitIndex];
+
 
         // Creating the user's card
         Card userCard = new Card();
